@@ -1,0 +1,24 @@
+{% extends 'dashboard.html' %}
+{% block content %}
+    <div id="services" class="tabcontent">
+    <h3>List of Members</h3>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">SI No</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Full Name</th>
+                    <th scope="col">Gender</th>
+                </tr>
+            </thead>
+            {% for i in userobj %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ i.username }}</td>
+                    <td>{{ i.get_full_name }}</td>
+                    <td>{{ i.Gender }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

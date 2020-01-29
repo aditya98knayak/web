@@ -1,0 +1,38 @@
+{% extends 'dashboard.html' %}
+{% block content %}
+    <div id="services" class="tabcontent w3-container city w3-animate-zoom">
+    <h3>Auditorium Booking Form</h3><br>
+
+    <h4><b>YOU CAN BOOK 15 DAYS FROM NOW!</b></h4>
+        <form method="post" action="{% url 'Member:audi_booking' %}">
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <td><label for="id_description">Description:</label></td>
+                    <td><textarea name="description" cols="35" rows="6" maxlength="30" class="form-control" required="" id="id_description"></textarea></td>
+                </tr>
+                <tr>
+                    <td><label for="id_booking_date">Booking date:</label></td>
+                    <td><input type="text" name="booking_date" required="" id="id_booking_date"></td>
+                </tr>
+                <tr><td colspan="2"><input type="submit" value="Submit" class="btn btn-secondary" style="width: 100%; margin-top:10px"></td></tr>
+            </table>
+        </form>
+        <script>
+            a = [
+                {% for i in args %}
+                    '{{ i.booking_date|date:"Y-m-d" }}',
+                {% endfor %}
+            ];
+            today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
+            today.setDate(today.getDate()+15);
+
+        $('#id_booking_date').datepicker({
+            disableDates: a,
+            format: 'yyyy-mm-dd',
+            minDate: today
+        });
+
+        </script>
+    </div>
+{% endblock %}

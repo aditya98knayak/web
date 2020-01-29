@@ -1,0 +1,87 @@
+<html>
+<head><title>Go Back</title>
+</head>
+<body>
+
+<link href='https://fonts.googleapis.com/css?family=Monoton' rel='stylesheet' type='text/css'>
+{% if user.is_member %}
+    <div>
+      <p id="error">You  <span style="margin-left:20px; margin-right:20px"> Need</span>To Be</p>
+      <p id="code">MA<span>NA</span><span>GER</span></p>
+      <p class="para" id="code">
+        <a id="error" style="border-radius:5px; text-decoration: none" href="{% url "Member:Mdetails" %}"><span></span><span style="word-spacing:10px">Go   Back</span></a>
+      </p>
+    </div>
+{% else %}
+    <div>
+      <p id="error">You  <span style="margin-left:20px; margin-right:20px"> Need</span>To Be</p>
+      <p id="code">ME<span>MB</span><span>ER</span></p>
+      <p class="para" id="code">
+        <a id="error" style="border-radius:5px; text-decoration: none" href="{% url "Manager:user" %}"><span></span><span style="word-spacing:10px">Go   Back</span></a>
+      </p>
+    </div>
+{% endif %}
+
+
+<style>
+body { background-color: #111111; }
+a {
+  border: 2px solid #f44336;
+  border-radius: 5px;
+  padding:10px;
+  animation: lower 12s linear infinite;
+}
+.para {
+	border: 2px solid #f44336;
+	padding-top:18px;
+	padding-bottom:18px;
+	margin-right:487px;
+	margin-left:487px;
+	animation: lower 12s linear infinite;
+	border-radius:5px;
+}
+div {
+  padding: 40px;
+  font-size: 75px;
+  font-family: 'Monoton', cursive;
+  text-align: center;
+  text-transform: uppercase;
+  text-shadow: 0 0 80px red,0 0 30px FireBrick,0 0 6px DarkRed;
+  color: red;
+}
+div p a{ margin:0; }
+#error:hover { text-shadow: 0 0 200px #ffffff,0 0 80px #008000,0 0 6px #0000ff; }
+#code:hover { text-shadow: 0 0 100px red,0 0 40px FireBrick,0 0 8px DarkRed; }
+#error {
+  color: #fff;
+  text-shadow: 0 0 80px #ffffff,0 0 30px #008000,0 0 6px #0000ff;
+}
+#error span {
+  animation: upper 11s linear infinite;
+}
+#code span:nth-of-type(2) {
+  animation: lower 10s linear infinite;
+}
+#code span:nth-of-type(1) {
+  text-shadow: none;
+  opacity:.4;
+}
+@keyframes upper {
+  0%,19.999%,22%,62.999%,64%, 64.999%,70%,100% {
+    opacity:.99; text-shadow: 0 0 80px #ffffff,0 0 30px #008000,0 0 6px #0000ff;
+  }
+  20%,21.999%,63%,63.999%,65%,69.999% {
+    opacity:0.4; text-shadow: none;
+  }
+}
+@keyframes lower {
+  0%,12%,18.999%,23%,31.999%,37%,44.999%,46%,49.999%,51%,58.999%,61%,68.999%,71%,85.999%,96%,100% {
+    opacity:0.99; text-shadow: 0 0 80px red,0 0 30px FireBrick,0 0 6px DarkRed;
+  }
+  19%,22.99%,32%,36.999%,45%,45.999%,50%,50.99%,59%,60.999%,69%,70.999%,86%,95.999% {
+    opacity:0.4; text-shadow: none;
+  }
+}
+</style>
+</body>
+</html>

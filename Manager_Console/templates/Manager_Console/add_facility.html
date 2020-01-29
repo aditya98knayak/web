@@ -1,0 +1,15 @@
+{% extends 'dashboard.html' %}
+{% block content %}
+    <div id="services" class="tabcontent">
+    <h3>Create Facility</h3>
+        <br>
+        <form action="{% url 'Manager:addf' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+            <table>
+                {{ forms.as_table }}
+                <tr><td colspan="2"><input type="submit" value="Create" class="btn btn-secondary" style="width:100%; margin-top: 10px"></td> </tr>
+            </table>
+
+        </form>
+    </div>
+{% endblock %}

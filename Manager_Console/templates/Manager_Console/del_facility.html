@@ -1,0 +1,19 @@
+{% extends 'dashboard.html' %}
+{% block content %}
+
+    <div id="services" class="tabcontent">
+    <h3>Delete Facilities</h3>
+        <div class="row">
+            {%  for i in args %}
+                <div class="card" style="width: 20rem;margin-left:20px;">
+                    <img src="{{ i.thumbnail.url}}" class="card-img-top" class="card-img-top">
+                    <div class="card-body">
+                        <h3 class="card-title"><b>{{i.name}}</b></h3>
+                        <p class="card-text">{{i.description}}</p>
+                        <a href="{% url 'Manager:removef' slug=i.name %}" class="btn btn-primary">Remove</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

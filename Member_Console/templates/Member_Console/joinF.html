@@ -1,0 +1,55 @@
+{% extends 'dashboard.html' %}
+{% block content %}
+    <div id="services" class="tabcontent w3-container city w3-animate-zoom">
+
+
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+
+        <h3>Facilities Offered</h3>
+        <div class="row">
+        {%  for i in facilities %}
+            {% if i.id in jf %}
+                {{ continue }}
+            {% else %}
+                <div class="card" style="width: 20rem;margin-left:20px;">
+                    <img src="{{ i.thumbnail.url}}" class="card-img-top" class="card-img-top">
+                    <div class="card-body">
+                        <h3 class="card-title"><b>{{i.name}}</b></h3>
+                        <p class="card-text">{{i.description}}</p>
+                        <button  class="btn btn-primary" data-toggle="modal" data-target="#{{ forloop.counter0|add:"100" }}" style="width:100%;">Join</button>
+
+                         <div class="modal fade" id="{{ forloop.counter0|add:"100" }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Choose the number of Days</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div align="center">
+                                                <a href="{% url 'Member:join' slugid=i.id slugdays=30 %}"><button type="button" class="btn btn-primary">30 days</button></a>
+                                                <a href="{% url 'Member:join' slugid=i.id slugdays=60 %}"><button type="button" class="btn btn-primary">60 days</button></a>
+                                                <a href="{% url 'Member:join' slugid=i.id slugdays=90 %}"><button type="button" class="btn btn-primary">90 days</button></a>
+                                            </div>
+                                        </div>
+                                     <!--   <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary">Save changes</button>
+                                        </div>-->
+                                    </div>
+                                </div>
+                            </div>
+
+                    </div>
+                </div>
+           {% endif %}
+        {% endfor %}
+        </div>
+    </div>
+{% endblock %}

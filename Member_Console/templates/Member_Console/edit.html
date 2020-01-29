@@ -1,0 +1,25 @@
+{% extends 'dashboard.html' %}
+{% block content %}
+    <div id="services" class="tabcontent w3-container city w3-animate-zoom">
+    <h3>Edit the details</h3>
+    <form action="{% url 'Member:edit' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+            <tr><td colspan="2"><input type="submit" value="Update" style="width: 100%; margin-top: 10px" class="btn btn-secondary"></td></tr>
+        </table>
+    </form>
+    </div>
+
+    <script>
+        gen=document.getElementById('id_Gender');
+        gen.className="form-control";
+        td=document.getElementsByTagName('td');
+        td[6].width="350px";
+        today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
+        $('#id_birthdate').datepicker({
+            format: 'yyyy-mm-dd',
+            maxDate: today
+        });
+    </script>
+{% endblock %}
